@@ -12,9 +12,8 @@ pip install --upgrade pip
 pip install -r requirement.txt
 
 ```
+This project uses FastAPI & uvicorn.
 
-This project uses FastAPI & uvicorn
-
-FastAPI docs: https://fastapi.tiangolo.com/
+FastAPI docs: https://fastapi.tiangolo.com
 
 
