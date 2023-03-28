@@ -12,14 +12,22 @@ class UserTestCase(unittest.TestCase):
         # assertion
         self.assertEqual(username, actual_username)
 
-    @unittest.skpi()
     def test_it_sets_empty_list_if_we_do_not_specify_stock(self):
-        pass
+        user = User("random_username")
 
-    @unittest.skip()
+        actual_stocks = user.stocks
+
+        self.assertEqual([], actual_stocks)
+
+    @unittest.skip("TODO: Homework")
     def test_it_sets_the_stocks_we_give(self):
         # sets a list of 3 strings
-        pass
+        user = User("random_username", stocks=["TSLA", "NVDA", "RBLX"])
+
+        actual_stocks = user.stocks
+        expected_stocks = ["TSLA", "NVDA", "RBLX"]
+
+        self.assertEqual(user.stocks, expected_stocks)
 
 
 if __name__ == "__main__":
