@@ -19,9 +19,8 @@ class AssetFactory:
             sector=sector,
         )
 
-    #TODO make it class or a static method, why?
-
-    def __extract_name(self, profile: dict) -> str:
+    @classmethod
+    def __extract_name(cls, profile: dict) -> str:
         summary = profile["longBusinessSummary"]
         words = summary.split(" ")
         first_2_words = words[0:2]

@@ -1,28 +1,25 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, BaseSettings
 from uuid import UUID
+
+# TODO add the field with description, aprox half
+class OrmModel(BaseModel):
+    class Config:
+        orm_mode = True
 
 
 class UserAdd(BaseModel):
     username: str = Field(description="Alphanumeric username between 6 and 20 chars")
 
 
-class UserInfo(BaseModel):
-    id: UUID
-    username: str
-    stocks: list[str]
-
-    class Config:
-        orm_mode = True
+class AssetAdd(BaseModel):
+    ticker: str = Field(description="The ticker symbol for the asset, "
+                                    "which is a unique code used to identify it on a stock exchange.")
 
 
-class AssetInfoBase(BaseModel):
+class AssetInfoBase(OrmModel):
     ticker: str
     name: str
     country: str
-    # TODO refactor not to have duplicate code
-
-    class Config:
-        orm_mode = True
 
 
 class AssetInfoUser(AssetInfoBase):
@@ -32,10 +29,22 @@ class AssetInfoUser(AssetInfoBase):
 class AssetInfoPrice(AssetInfoBase):
     current_price: float
     currency: str
-    # TODO homework
-    # today_low_price: float
-    # today_high_price: float
-    # open_price: float
+    today_low_price: float
+    open_price: float
     closed_price: float
-    yesterday_price: float
+    fifty_day_price: float
+    today_high_price: float
+    open_price: float
+    evolution: float
+    sector: str
 
+
+class UserInfo(OrmModel):
+    id: UUID
+    username: str
+    stocks: list[AssetInfoBase]
+
+
+
+
+    # TODO refactor not to have duplicate code

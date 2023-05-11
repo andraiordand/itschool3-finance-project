@@ -1,5 +1,6 @@
 import json
 import logging
+from abc import ABC
 
 from domain.user.factory import UserFactory
 from domain.user.persistence_interface import UserPersistenceInterface
@@ -10,14 +11,14 @@ class UserPersistenceFile(UserPersistenceInterface):
     def __init__(self, file_path: str):
         self.__file_path = file_path
 
-    def get_all(self) -> :
+    def get_all(self) -> list[User]:
         try:
-             # TODO refactor with -done
+            # TODO refactor with -done
             with open(self.__file_path) as file:
-             contents = file.read()
-             users_info = json.loads(contents)
-             factory = UserFactory()
-             return [factory.make_from_persistance(x) for x in users_info]
+                contents = file.read()
+            users_info = json.loads(contents)
+            factory = UserFactory()
+            return [factory.make_from_persistance(x) for x in users_info]
         except Exception as e:
             # TODO Homework, log error -done
             logging.error("Failed to load users!}" + str(e))

@@ -1,4 +1,7 @@
 import unittest
+import uuid
+from uuid import uuid4
+
 from domain.user.user import User
 
 
@@ -6,11 +9,14 @@ class UserTestCase(unittest.TestCase):
     def test_user_sets_the_right_username(self):
         # set up
         username = "random_generated"
-        user = User(username)
+        uuid = uuid4()
+        user = User(username=username, uuid=uuid)
         # execution
         actual_username = user.username
+        actual_uuid = user.uuid
         # assertion
         self.assertEqual(username, actual_username)
+        self.assertEqual(uuid, actual_uuid)
 
     def test_it_sets_empty_list_if_we_do_not_specify_stock(self):
         user = User("random_username")

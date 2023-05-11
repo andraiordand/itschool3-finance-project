@@ -44,8 +44,29 @@ class Asset:
     def fifty_day_price(self) -> float:
         return self.__info["fiftyDayAverage"]
 
-    # TODO e property, in percentage how much it went up or down
-    #  current_price & closed_price
+    @property
+    def sector(self) -> str:
+        return self.__sector
+
+    @property
+    def today_low_price(self) -> float:
+        return self.__info["dayLow"]
+
+    @property
+    def today_high_price(self) -> float:
+        return self.__info["dayHigh"]
+
+    @property
+    def open_price(self) -> float:
+        return self.__info["open"]
+
+    @property
+    def evolution(self):
+        evolution = ((
+                        self.__info["lastPrice"] - self.__info["previousClose"]
+                     ) / self.__info["previousClose"]) * 100
+        return evolution
+
 
 
 

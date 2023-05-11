@@ -19,7 +19,7 @@ class UserPersistenceSqlite(UserPersistenceInterface):
             else:
                 raise e
         factory = UserFactory()
-        users = [factory.make_from_persistance(x) for x in users_info]
+        users = [factory.make_from_persitance(x) for x in users_info]
         return users
 
     def add(self, user: User):
