@@ -1,7 +1,8 @@
-from pydantic import BaseModel, Field, BaseSettings
 from uuid import UUID
 
-# TODO add the field with description, aprox half
+from pydantic import BaseModel, Field
+
+
 class OrmModel(BaseModel):
     class Config:
         orm_mode = True
@@ -44,7 +45,3 @@ class UserInfo(OrmModel):
     username: str
     stocks: list[AssetInfoBase]
 
-
-
-
-    # TODO refactor not to have duplicate code
